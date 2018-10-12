@@ -1,0 +1,49 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "27.0.3"
+    defaultConfig {
+        applicationId "net.sourceforge.simcpux"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    signingConfigs {
+        debug {
+            storeFile file("../debug.keystore")
+        }
+    }
+}
+
+dependencies {
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+
+    // okHttp的官方封装
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    // retrofit2对json数据格式转换的支持
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+
+    // Gson
+    compile 'com.google.code.gson:gson:2.8.2'
+    // okHttp主体
+    compile 'com.squareup.okhttp3:okhttp:3.8.0'
+    // okHttp辅助
+    compile 'com.squareup.okio:okio:1.13.0'
+    // okHttp拦截器
+    compile 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+}
